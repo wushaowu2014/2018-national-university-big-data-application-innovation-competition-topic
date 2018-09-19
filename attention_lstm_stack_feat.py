@@ -192,10 +192,10 @@ def lstm_model():
     lstm_layer = LSTM(64, dropout=rate_drop_lstm,\
                       recurrent_dropout=rate_drop_lstm,return_sequences=True)
     
-    inp = Input(shape=(MAX_SEQUENCE_LENGTH,), dtype='int32') #输入层
-    embedded_sequences= embedding_layer(inp) #嵌入层
-    x = lstm_layer(embedded_sequences) #lstmc层
-    merged = Attention(MAX_SEQUENCE_LENGTH)(x) #attention机制层
+    inp = Input(shape=(MAX_SEQUENCE_LENGTH,), dtype='int32') 
+    embedded_sequences= embedding_layer(inp) 
+    x = lstm_layer(embedded_sequences) 
+    merged = Attention(MAX_SEQUENCE_LENGTH)(x) 
     merged = Dropout(0.5)(merged)
     outp = Dense(1,activation="linear")(merged)
     model = Model(inputs=inp, outputs=outp)
@@ -203,7 +203,7 @@ def lstm_model():
                   optimizer='rmsprop',
                   metrics=['mse'])
     return model
-##########################stacking###############################################
+
 from sklearn.cross_validation import StratifiedKFold
 print('lstm stacking')
 stack_train = np.zeros((len(y),1))
@@ -238,4 +238,3 @@ for i in range(stack_test.shape[1]):
     df_stack_test['lstm_classfiy{}'.format(i)] = stack_test[:, i]
 df_stack_train.to_csv('lstm_stack_train_feat.csv', index=None, encoding='utf8')
 df_stack_test.to_csv('lstm_stack_test_feat.csv', index=None, encoding='utf8')
-print(str(n_folds)+'_folds_stacking特征已保存\n')
