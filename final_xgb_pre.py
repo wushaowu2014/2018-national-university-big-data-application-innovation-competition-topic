@@ -34,7 +34,7 @@ test_feature = pd.concat([
                         lstm_stack_test_feat,
                         ], axis=1)
 
-###########################xgb 5折cv###########################################
+
 from sklearn.cross_validation import StratifiedKFold
 print('xgb stacking')
 stack_train = np.zeros((len(label),1))
@@ -42,9 +42,9 @@ stack_test = np.zeros((len(test_feature),1))
 score_va = 0
 n_folds=5
 for i, (tr, va) in enumerate(StratifiedKFold(label, n_folds=n_folds, random_state=1)):
-    print('stack:%d/%d' % ((i + 1), n_folds))
+   
     params={'booster':'gbtree',
-        'eta':0.1, #学习率
+        'eta':0.1, 
         'max_depth':4,
         'objective':'reg:linear',
         'random_seed':2018,
