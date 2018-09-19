@@ -3,6 +3,6 @@
 
 特征：
 ---
-tf_itf特征:   传统模型 
-词向量特征:    attention lstm模型
-(可以直接单模型跑回归)
+tf_itf特征:   传统模型 <br>
+词向量特征:    attention lstm模型<br>
+(可以直接单模型跑回归)<br>
